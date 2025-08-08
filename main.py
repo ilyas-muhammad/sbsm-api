@@ -1,16 +1,11 @@
 from dotenv import load_dotenv
-from typing import Any
 from fastapi import FastAPI
-from pydantic import BaseModel
+from model import Measurement
 from spreadsheet import append_row, get_all_records
 
 app = FastAPI()
 
 load_dotenv()
-
-class Measurement(BaseModel):
-    user_profile: dict[str, Any]
-    measurement: dict[str, Any]
 
 @app.get("/")
 def ping():

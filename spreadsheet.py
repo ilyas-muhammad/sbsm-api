@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import gspread
 import os
-from main import Measurement
+from model import Measurement
 
 load_dotenv()
 
