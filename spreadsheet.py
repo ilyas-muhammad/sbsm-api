@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import gspread
 import os
+from main import Measurement
 
 load_dotenv()
 
@@ -24,5 +25,19 @@ def get_sheet():
 def get_all_records():
     return get_sheet().get_all_records()
 
-def append_row(row: list[any] = []):
+def append_row(measurement: Measurement):
+    row = [
+        measurement.user_profile.get('timestamp'),
+        measurement.user_profile.get('user_id'),
+        measurement.user_profile.get('user_height'),
+        measurement.user_profile.get('user_weight'),
+        measurement.measurement.get('type'),
+        measurement.measurement.get('value'),
+        measurement.measurement.get('confidence_score'),
+        measurement.measurement.get('confidence_percentage'),
+        measurement.measurement.get('confidence_label'),
+        measurement.measurement.get('source'),
+        measurement.measurement.get('method'),
+        measurement.measurement.get('unit'),
+    ]
     return get_sheet().append_row(row)
